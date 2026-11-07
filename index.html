@@ -1,147 +1,357 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Adib Hassan – AI/ML Engineer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<meta name="description" content="Entry-level AI/ML Engineer in Dhaka building explainable, deployed ML systems: ensembles, SHAP, FastAPI, Docker, Kubernetes.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2722%22 fill=%22%233b5bdb%22/><text x=%2250%22 y=%2268%22 font-size=%2258%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22sans-serif%22 font-weight=%22700%22>A</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f5f7fa;--surf:#fff;--ink:#0f1b2d;--mute:#52627a;--line:#d9e0ea;--acc:#0b7a75;--acc2:#b8690a;--accbg:#e3f3f1;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1621;--surf:#152130;--ink:#e8eef6;--mute:#9aa9bd;--line:#26364a;--acc:#4fd1c5;--acc2:#f0a64a;--accbg:#12332f;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#0e1621;--surf:#152130;--ink:#e8eef6;--mute:#9aa9bd;--line:#26364a;--acc:#4fd1c5;--acc2:#f0a64a;--accbg:#12332f;color-scheme:dark}
-html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+:root{
+  --bg:#f4f6fa;--surface:#fff;--ink:#0f1a2e;--muted:#55627a;--line:#dde3ee;
+  --accent:#3b5bdb;--accent-ink:#fff;--miss:#c2680f;--false:#0f8a7a;--track:#e6ebf4;
+  --shadow:0 1px 2px rgba(15,26,46,.06),0 12px 32px -12px rgba(15,26,46,.18);
+  --nav:rgba(255,255,255,.78);
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  --bg:#0b1120;--surface:#131c31;--ink:#e8edf7;--muted:#98a5bd;--line:#232f4a;
+  --accent:#7c9bff;--accent-ink:#0b1120;--miss:#f0a24b;--false:#4fd1bd;--track:#1d2842;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 16px 40px -14px rgba(0,0,0,.7);
+  --nav:rgba(19,28,49,.78);
+  color-scheme:dark;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0b1120;--surface:#131c31;--ink:#e8edf7;--muted:#98a5bd;--line:#232f4a;
+    --accent:#7c9bff;--accent-ink:#0b1120;--miss:#f0a24b;--false:#4fd1bd;--track:#1d2842;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 16px 40px -14px rgba(0,0,0,.7);
+    --nav:rgba(19,28,49,.78);color-scheme:dark;
+  }
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.65 'Plus Jakarta Sans',system-ui,sans-serif}
-h1,h2,h3{font-family:Sora,system-ui,sans-serif;line-height:1.2;margin:0}
-a{color:var(--acc)}a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--acc2);outline-offset:2px}
-.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
-nav{display:flex;gap:18px;flex-wrap:wrap;padding:18px 0;font-weight:500;font-size:15px}
-nav a{color:var(--mute);text-decoration:none}nav a:hover{color:var(--acc)}
-.hero{display:grid;grid-template-columns:1.15fr 1fr;gap:40px;align-items:center;padding:36px 0 64px}
-.hero h1{font-size:clamp(34px,5.4vw,56px);letter-spacing:-.02em}
-.hero p.lead{font-size:18px;color:var(--mute);max-width:52ch;margin:18px 0 26px}
-.btns{display:flex;gap:12px;flex-wrap:wrap}
-.btn{display:inline-block;padding:11px 20px;border-radius:8px;font-weight:600;text-decoration:none;border:1.5px solid var(--acc)}
-.btn.p{background:var(--acc);color:var(--bg)}.btn.s{color:var(--acc)}
-.tuner{background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:22px}
-.tuner h2{font-size:17px}.tuner small{color:var(--mute);display:block;margin:4px 0 16px;font-size:13px}
-.tuner input{width:100%;accent-color:var(--acc)}
-.row{display:flex;justify-content:space-between;font-size:14px;margin-top:14px}
-.bar{height:12px;border-radius:6px;background:var(--line);overflow:hidden;margin-top:5px}
-.bar i{display:block;height:100%;transition:width .15s}
-section{padding:54px 0;border-top:1px solid var(--line)}
-section>h2{font-size:28px;margin-bottom:26px}
-.flag{display:grid;grid-template-columns:1.4fr 1fr;gap:34px}
-.flag h3{font-size:24px;margin-bottom:6px}.when{color:var(--mute);font-size:14px}
-ul{padding-left:20px;margin:12px 0}li{margin:7px 0}
-.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
-.tags span{background:var(--accbg);color:var(--acc);border-radius:99px;padding:3px 11px;font-size:13px;font-weight:500}
-.arch{background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:20px;font-size:14px}
-.arch b{display:block;margin-top:12px}.arch b:first-child{margin-top:0}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px}
-.card{background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:20px}
-.card h3{font-size:18px;margin-bottom:4px}.card ul{font-size:15px}
-.xp{border-left:3px solid var(--acc);padding-left:20px}
-.sk{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
-.sk h3{font-size:15px;color:var(--acc);margin-bottom:6px}.sk p{margin:0;font-size:15px}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:34px}
-footer{padding:48px 0 60px;border-top:1px solid var(--line);color:var(--mute);font-size:15px}
-@media (max-width:760px){.hero,.flag,.two{grid-template-columns:1fr}}
-@media (prefers-reduced-motion:reduce){.bar i{transition:none}html{scroll-behavior:auto}}
-</style></head>
-<body><div class="wrap">
-<nav aria-label="Sections"><a href="#clusterhealth">Flagship</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#education">Education</a><a href="#contact">Contact</a></nav>
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "Schibsted Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;transition:background .25s,color .25s}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+section{padding:88px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+h1,h2,h3{font-weight:700;line-height:1.1;letter-spacing:-.02em;margin:0}
+h2{font-size:clamp(28px,4vw,38px);margin-bottom:12px}
+h3{font-size:20px;letter-spacing:-.01em}
+p{margin:0 0 14px}
+.lede{color:var(--muted);max-width:60ch}
+.muted{color:var(--muted)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
 
-<header class="hero">
-<div>
-<h1>Adib Hassan builds ML systems that explain themselves.</h1>
-<p class="lead">Entry-level AI/ML Engineer in Dhaka. I take models from training to a deployed, monitored API: ensembles, explainability (SHAP), FastAPI, Docker, Kubernetes. Hackathon finalist team leader.</p>
-<div class="btns"><a class="btn p" href="https://github.com/adibWd">GitHub profile</a><a class="btn s" href="https://www.linkedin.com/in/adib-hassan-178204344">LinkedIn</a><a class="btn s" href="mailto:adib2205101521@diu.edu.bd">Email me</a></div>
-</div>
-<div class="tuner" aria-labelledby="tt">
-<h2 id="tt">Threshold tuner, as in ClusterHealth AI</h2>
-<small>Illustrative curve only, not real model results. Move the alert level to see the trade-off operators control.</small>
-<label for="th" class="row"><span>Alert threshold</span><b id="thv">0.50</b></label>
-<input id="th" type="range" min="0.1" max="0.9" step="0.01" value="0.5">
-<div class="row"><span>Missed faults</span><b id="mv"></b></div><div class="bar"><i id="mb" style="background:var(--acc2)"></i></div>
-<div class="row"><span>False alarms</span><b id="fv"></b></div><div class="bar"><i id="fb" style="background:var(--acc)"></i></div>
-</div>
-</header>
+/* floating nav */
+.nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:50;display:flex;align-items:center;gap:4px;padding:6px;max-width:calc(100vw - 20px);background:var(--nav);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);border:1px solid var(--line);border-radius:999px;box-shadow:var(--shadow)}
+.nav .links{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.nav .links::-webkit-scrollbar{display:none}
+.nav a{padding:8px 14px;border-radius:999px;text-decoration:none;font-size:15px;font-weight:500;color:var(--muted);white-space:nowrap;transition:background .2s,color .2s}
+.nav a:hover{color:var(--ink)}
+.nav a.on{background:var(--accent);color:var(--accent-ink)}
+.nav .mono{font-weight:800;color:var(--ink);padding:8px 12px}
+.theme{all:unset;cursor:pointer;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;color:var(--muted);flex:none}
+.theme:hover{background:var(--track);color:var(--ink)}
+.theme svg{width:18px;height:18px}
 
-<section id="clusterhealth">
-<h2>Flagship project</h2>
-<div class="flag"><div>
-<h3>ClusterHealth AI: predictive, explainable GPU/CPU cluster management</h3>
-<div class="when">July 2026 · AI Innovation Hackathon 2026 finalist (team leader)</div>
-<ul>
-<li>Led the team to the final round with a weighted ensemble of XGBoost and a PyTorch BiGRU-Attention model (0.6/0.4) that predicts GPU/CPU hardware failures.</li>
-<li>Every prediction ships with a SHAP explanation, so operators see why a node is flagged.</li>
-<li>Report Card and Threshold Tuner: operators adjust the balance between missed faults and false alarms live, with an auto-suggested alert level that maximizes F₂.</li>
-<li>Delivered a FastAPI inference service, live dashboard, idle-GPU cost optimizer, Slack/Discord/Email alerts, Kubernetes cordon/drain actions, and a Docker Compose stack with Prometheus and Grafana.</li>
-<li>Trained on synthetic DCGM-style telemetry.</li></ul>
-<div class="tags"><span>XGBoost</span><span>PyTorch</span><span>SHAP</span><span>FastAPI</span><span>Docker Compose</span><span>Kubernetes</span><span>Prometheus</span><span>Grafana</span></div>
-</div>
-<div class="arch"><b>Data</b>Synthetic DCGM-style telemetry<b>Models</b>XGBoost + BiGRU-Attention, 0.6/0.4 blend<b>Explain</b>SHAP per prediction<b>Serve</b>FastAPI inference + dashboard<b>Operate</b>Prometheus, Grafana, alerts, Kubernetes cordon/drain</div>
-</div></section>
+/* hero */
+.hero{padding:150px 0 90px}
+.hero .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(40px,6.4vw,68px);letter-spacing:-.035em;font-weight:800}
+.hero .lede{font-size:19px;margin:24px 0 32px}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;padding:13px 22px;border-radius:12px;text-decoration:none;font-weight:600;font-size:16px;border:1.5px solid var(--line);background:var(--surface);transition:transform .15s,border-color .2s}
+.btn:hover{border-color:var(--accent);transform:translateY(-2px)}
+.btn.pri{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.facts{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:30px;font-size:15px;color:var(--muted)}
+.facts b{color:var(--ink);font-weight:600}
 
-<section id="experience"><h2>Experience</h2>
-<div class="xp"><h3>AI Engineer, Virtual Work Experience Programme</h3>
-<div class="when">CadetX Learning, UK (remote) · July – October 2026</div>
-<ul><li>Completed a three-month sprint-based programme simulating AI Engineer responsibilities.</li>
-<li>Delivered sprint tasks and business deliverables for an Automated Data Cleaning &amp; Validation System.</li>
-<li>Worked to defined requirements, documentation standards, and testing procedures.</li>
-<li>Credential: Certificate of Virtual Work Experience (ID: CX-2026-SB09).</li></ul></div></section>
+/* tuner = the one memorable element */
+.tuner{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px;box-shadow:var(--shadow);animation:float 7s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-10px)}}
+.tuner h3{font-size:19px}
+.tuner .note{font-size:14px;color:var(--muted);margin:6px 0 22px}
+.row{display:flex;justify-content:space-between;font-weight:500;font-size:15px;margin-bottom:8px}
+.row output{font-weight:700;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--accent);height:24px;margin:0 0 22px;cursor:pointer}
+.bar{height:10px;border-radius:99px;background:var(--track);overflow:hidden;margin-bottom:18px}
+.bar i{display:block;height:100%;border-radius:99px;transition:width .15s}
+#bm{background:var(--miss)}#bf{background:var(--false)}
+.tuner .btn{padding:9px 16px;font-size:14px;border-radius:10px;margin-top:4px}
+.tuner .out{font-size:13px;color:var(--muted);margin-top:12px}
 
-<section id="projects"><h2>Projects</h2>
-<div class="grid">
-<article class="card"><h3>Automated Data Quality &amp; Validation System</h3><div class="when">July – October 2026</div>
-<ul><li>Modular pipeline for profiling, cleaning, validation, and reporting.</li><li>Imputation, duplicate detection, format normalization, and rule-based validation on a synthetic broadband customer dataset.</li><li>Isolation Forest flags unusual records.</li><li>CLI workflow producing structured CSV and JSON outputs.</li></ul>
-<div class="tags"><span>pandas</span><span>scikit-learn</span><span>Pytest</span><span>Git</span></div><p><a href="https://github.com/adibWd/CadetX-Automated-Data-Cleaning-And-Validation-System">View repository</a></p></article>
-<article class="card"><h3>Text Summarizer App</h3>
-<ul><li>Summarizes text or dialogue with a locally stored T5 model, no hosted inference API.</li><li>FastAPI endpoint with preprocessing and beam-search generation; runs on Apple Silicon (MPS), CUDA, or CPU.</li><li>Browser UI in HTML/CSS/JS; large weights managed with Git LFS.</li></ul>
-<div class="tags"><span>T5</span><span>PyTorch</span><span>FastAPI</span><span>Pydantic</span></div><p><a href="https://github.com/adibWd/Text-Summarizer-App">View repository</a></p></article>
-<article class="card"><h3>E-commerce FAQ Chatbot</h3>
-<ul><li>Streamlit chatbot over a ~23-FAQ knowledge base (orders, shipping, returns, payment, accounts).</li><li>Two selectable matchers: TF-IDF with cosine similarity, and sentence embeddings (all-MiniLM-L6-v2).</li><li>Confidence threshold with a rephrase fallback instead of guessing.</li></ul>
-<div class="tags"><span>NLTK</span><span>sentence-transformers</span><span>Streamlit</span></div></article>
-<article class="card"><h3>AI Language Translation Tool</h3>
-<ul><li>Translates between 130+ languages with automatic source detection.</li><li>One-click swap, copy-to-clipboard, and text-to-speech via gTTS.</li></ul>
-<div class="tags"><span>Streamlit</span><span>deep-translator</span><span>gTTS</span></div></article>
-<article class="card"><h3>Group Chat App</h3>
-<ul><li>Group-based mobile chat with Firebase Authentication and real-time updates through Cloud Firestore and StreamBuilders.</li></ul>
-<div class="tags"><span>Flutter</span><span>Dart</span><span>Firebase</span></div></article>
-<article class="card"><h3>Car Rental System</h3>
-<ul><li>Console app with menu, automatic cost by rental days, and file-based rental history.</li><li>Abstract Vehicle class with Car and Bike subclasses; try-catch handling for bad input and file errors.</li></ul>
-<div class="tags"><span>Java</span><span>OOP</span><span>File I/O</span></div></article>
-</div></section>
+/* flagship */
+.flag{display:grid;grid-template-columns:1.3fr .7fr;gap:48px;margin-top:36px}
+.flag ul{padding-left:20px;margin:0}
+.flag li{margin-bottom:10px}
+.spec{border-left:2px solid var(--accent);padding-left:22px;display:grid;gap:18px;align-content:start}
+.spec dt{font-size:14px;color:var(--muted)}
+.spec dd{margin:2px 0 0;font-weight:600}
 
-<section id="skills"><h2>Skills</h2>
-<div class="sk">
-<div><h3>ML / DL</h3><p>TensorFlow, PyTorch, scikit-learn, XGBoost, Hugging Face Transformers, SHAP, NLTK</p></div>
-<div><h3>Concepts</h3><p>NLP, ensemble learning, explainable AI, anomaly detection, failure prediction, sentence embeddings, TF-IDF</p></div>
-<div><h3>Data</h3><p>pandas, NumPy, Matplotlib, Seaborn, SQL, data cleaning and validation</p></div>
-<div><h3>Deployment</h3><p>FastAPI, REST, Docker, Docker Compose, Kubernetes, Prometheus, Grafana, Streamlit</p></div>
-<div><h3>Engineering</h3><p>Python, Java, Git/GitHub, Pytest, CLI tools, OOP, HTML/CSS/JS, Flutter</p></div>
-</div></section>
+/* lists */
+.item{display:grid;grid-template-columns:200px 1fr;gap:12px 40px;padding:28px 0;border-top:1px solid var(--line)}
+.item:first-of-type{border-top:0}
+.when{color:var(--muted);font-size:15px}
+.item h3{margin-bottom:4px}
+.stack{font-size:14.5px;color:var(--muted);margin-bottom:10px}
+.item ul{margin:0;padding-left:20px}
+.item li{margin-bottom:6px}
+.tag{display:inline-block;font-size:13px;font-weight:600;padding:3px 10px;border-radius:99px;background:var(--track);color:var(--muted);margin-left:8px;vertical-align:2px}
+.item a.lnk{color:var(--accent);font-weight:600;text-underline-offset:3px}
+.skills{display:grid;gap:0;margin-top:28px}
+.skills div{display:grid;grid-template-columns:200px 1fr;gap:40px;padding:18px 0;border-top:1px solid var(--line)}
+.skills dt{font-weight:600}.skills dd{margin:0;color:var(--muted)}
 
-<section id="education"><h2>Education, certifications and leadership</h2>
-<div class="two"><div>
-<h3>B.Sc. in CSE, Daffodil International University</h3>
-<div class="when">Graduated 2026 · CGPA 3.35 / 4.00</div>
-<ul><li>Thesis: a leakage-free, clinical feature-based ML and deep learning ensemble framework to predict chronic kidney disease.</li><li>Supervised by Dr. Naznin Sultana and Mr. Mayen Uddin Mojumdar.</li><li>HSC 2021: GPA 5.00 / 5.00 · SSC 2019: GPA 4.67 / 5.00</li></ul>
-<h3 style="margin-top:26px">Certifications</h3>
-<ul><li><b>Python with Machine Learning</b>, EDGE Project, Bangladesh Computer Council (May 2024 – Feb 2025, 80 hours).</li><li><b>Aspire Leaders Program 2026</b>, Aspire Institute (Sept 2026, 40 hours).</li><li><b>Virtual Work Experience</b>, CadetX Learning (ID: CX-2026-SB09).</li></ul>
-</div><div>
-<h3>Leadership</h3>
-<ul><li><b>Team Leader, Team Nephroal:</b> finalist, AI Innovation Hackathon 2026 (World AI Alliance and DIU CSE), 25 July 2026.</li><li><b>Event Organizer, YES Club, Transparency International Bangladesh:</b> led a nationwide anti-corruption awareness campaign covering logistics, outreach, and cross-team execution.</li></ul>
-<p class="when">References available on request.</p>
-</div></div></section>
+/* contact + floating action */
+.contact{text-align:left}
+.big{font-size:clamp(30px,5vw,52px);font-weight:800;letter-spacing:-.03em;line-height:1.1;max-width:18ch;margin-bottom:28px}
+footer{padding:28px 0 100px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+.fab{position:fixed;right:20px;bottom:20px;z-index:40;display:flex;align-items:center;gap:8px;padding:14px 20px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:700;text-decoration:none;box-shadow:var(--shadow);transition:transform .15s,opacity .25s}
+.fab:hover{transform:translateY(-3px)}
+.fab.hide{opacity:0;pointer-events:none;transform:translateY(10px)}
 
-<footer id="contact"><h2 style="color:var(--ink);margin-bottom:12px">Let’s talk about an AI/ML role or internship</h2>
-<a href="mailto:adib2205101521@diu.edu.bd">adib2205101521@diu.edu.bd</a> · <a href="https://github.com/adibWd">github.com/adibWd</a> · <a href="https://www.linkedin.com/in/adib-hassan-178204344">linkedin.com/in/adib-hassan-178204344</a> · Dhaka, Bangladesh</footer>
-</div>
+@media (max-width:860px){
+  .hero{padding-top:120px}.hero .grid,.flag{grid-template-columns:1fr;gap:36px}
+  .item,.skills div{grid-template-columns:1fr;gap:4px}
+  section{padding:64px 0}
+  .nav a{padding:8px 11px;font-size:14px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Primary">
+  <a class="mono" href="#top" aria-label="Top">AH</a>
+  <div class="links">
+    <a href="#flagship">Flagship</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#education">Education</a><a href="#contact">Contact</a>
+  </div>
+  <button class="theme" id="theme" aria-label="Switch colour theme" title="Switch theme">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+  </button>
+</nav>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap grid">
+    <div>
+      <h1>Adib Hassan builds ML systems that explain themselves.</h1>
+      <p class="lede">Entry-level AI/ML Engineer in Dhaka. I take models from training to a deployed, monitored API: ensembles, explainability with SHAP, FastAPI, Docker and Kubernetes. Hackathon finalist team leader.</p>
+      <div class="btns">
+        <a class="btn pri" href="https://github.com/adibWd">GitHub profile</a>
+        <a class="btn" href="https://www.linkedin.com/in/adib-hassan-178204344">LinkedIn</a>
+        <a class="btn" href="mailto:adib2205101521@diu.edu.bd">Email me</a>
+      </div>
+      <div class="facts"><span><b>B.Sc. CSE</b>, Daffodil International University, 2026</span><span><b>Open to</b> entry-level and internship roles</span></div>
+    </div>
+    <aside class="tuner" aria-labelledby="tt">
+      <h3 id="tt">Threshold tuner, as in ClusterHealth AI</h3>
+      <p class="note">Illustrative curves only, not real model results. Move the alert level to see the trade-off operators control.</p>
+      <div class="row"><label for="th">Alert threshold</label><output id="tv">0.50</output></div>
+      <input id="th" type="range" min="0.05" max="0.95" step="0.01" value="0.50">
+      <div class="row"><span>Missed faults</span><output id="mv">36%</output></div>
+      <div class="bar"><i id="bm"></i></div>
+      <div class="row"><span>False alarms</span><output id="fv">36%</output></div>
+      <div class="bar"><i id="bf"></i></div>
+      <button class="btn" id="suggest" type="button">Suggest level (max F2)</button>
+      <p class="out" id="sout">Lower the threshold to catch more faults; raise it to cut noise.</p>
+    </aside>
+  </div>
+</section>
+
+<section id="flagship">
+  <div class="wrap">
+    <h2>Flagship project</h2>
+    <p class="lede">ClusterHealth AI: predictive, explainable GPU/CPU cluster management. Built as team leader for the AI Innovation Hackathon 2026, where the team reached the final round.</p>
+    <div class="flag">
+      <ul>
+        <li>Hybrid XGBoost + BiGRU-Attention weighted ensemble (0.6/0.4) that predicts GPU/CPU hardware failures, with a SHAP explanation for every prediction.</li>
+        <li>Report Card and Threshold Tuner: operators adjust the balance between missed faults and false alarms live, with an auto-suggested alert level that maximizes an F2 score.</li>
+        <li>FastAPI inference service, live dashboard, idle-GPU cost optimizer, Slack/Discord/Email alerts and Kubernetes cordon/drain actions, shipped as a Docker Compose stack with Prometheus and Grafana.</li>
+      </ul>
+      <dl class="spec">
+        <div><dt>Data</dt><dd>Synthetic DCGM-style telemetry</dd></div>
+        <div><dt>Models</dt><dd>XGBoost, PyTorch BiGRU-Attention, SHAP</dd></div>
+        <div><dt>Serving</dt><dd>FastAPI, Docker Compose, Kubernetes</dd></div>
+        <div><dt>Monitoring</dt><dd>Prometheus, Grafana</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <h2>Experience</h2>
+    <div class="item">
+      <div class="when">Jul 2026 – Oct 2026<br>Remote, United Kingdom</div>
+      <div>
+        <h3>AI Engineer, virtual work experience</h3>
+        <div class="stack">CadetX Learning</div>
+        <ul>
+          <li>Completed a three-month, sprint-based programme simulating AI Engineer responsibilities.</li>
+          <li>Delivered sprint tasks and business deliverables for an Automated Data Cleaning &amp; Validation System.</li>
+          <li>Worked to defined requirements, documentation standards and testing procedures.</li>
+          <li>Credential: Certificate of Virtual Work Experience (ID: CX-2026-SB09).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <h2>More projects</h2>
+    <div class="item">
+      <div class="when">Jul – Oct 2026</div>
+      <div><h3>Automated Data Quality &amp; Validation System</h3>
+        <div class="stack">Python, pandas, NumPy, scikit-learn, Pytest, Git</div>
+        <ul><li>Modular pipeline for profiling, cleaning, validation and reporting, run from a command-line workflow that writes CSV and JSON outputs.</li>
+        <li>Imputation, duplicate detection, format normalization, rule-based validation and Isolation Forest anomaly detection on a synthetic broadband customer dataset.</li></ul>
+        <p style="margin-top:10px"><a class="lnk" href="https://github.com/adibWd/CadetX-Automated-Data-Cleaning-And-Validation-System">View on GitHub</a></p></div>
+    </div>
+    <div class="item">
+      <div class="when">&nbsp;</div>
+      <div><h3>Text Summarizer App</h3>
+        <div class="stack">PyTorch, Hugging Face Transformers (T5), FastAPI, Uvicorn, Pydantic</div>
+        <ul><li>Web app that summarizes text or dialogue with a locally stored T5 model and no hosted inference API.</li>
+        <li>FastAPI endpoint with text preprocessing and beam-search generation; runs on Apple Silicon (MPS), NVIDIA (CUDA) or CPU.</li></ul>
+        <p style="margin-top:10px"><a class="lnk" href="https://github.com/adibWd/Text-Summarizer-App">View on GitHub</a></p></div>
+    </div>
+    <div class="item">
+      <div class="when">&nbsp;</div>
+      <div><h3>E-commerce FAQ Chatbot</h3>
+        <div class="stack">Streamlit, NLTK, scikit-learn, sentence-transformers</div>
+        <ul><li>Answers questions from a ~23-FAQ knowledge base using TF-IDF with cosine similarity or semantic matching (all-MiniLM-L6-v2).</li>
+        <li>Confidence threshold with a rephrase fallback instead of guessing on unclear questions.</li></ul></div>
+    </div>
+    <div class="item">
+      <div class="when">&nbsp;</div>
+      <div><h3>AI Language Translation Tool</h3>
+        <div class="stack">Streamlit, deep-translator, gTTS</div>
+        <ul><li>Translates between 130+ languages with automatic source detection, language swap, copy-to-clipboard and text-to-speech.</li></ul></div>
+    </div>
+    <div class="item">
+      <div class="when">&nbsp;</div>
+      <div><h3>Group Chat App and Car Rental System</h3>
+        <div class="stack">Flutter, Firebase · Java, OOP</div>
+        <ul><li>Group-based mobile chat with Firebase Authentication and real-time updates in Cloud Firestore.</li>
+        <li>Console vehicle rental app applying encapsulation, inheritance, abstraction and polymorphism, with file-based rental history.</li></ul>
+        <p style="margin-top:10px"><a class="lnk" href="https://github.com/adibWd">All repositories on GitHub</a></p></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <h2>Skills</h2>
+    <dl class="skills">
+      <div><dt>Languages and tools</dt><dd>Python, Java, SQL, Git, GitHub, Docker, Pytest, CLI</dd></div>
+      <div><dt>ML and deep learning</dt><dd>TensorFlow, PyTorch, scikit-learn, XGBoost, Hugging Face Transformers, SHAP, NLTK</dd></div>
+      <div><dt>Data</dt><dd>pandas, NumPy, Matplotlib, Seaborn</dd></div>
+      <div><dt>APIs and deployment</dt><dd>FastAPI, REST, Streamlit, Uvicorn, Docker Compose, Kubernetes, Prometheus, Grafana, Flutter, Firebase</dd></div>
+      <div><dt>Concepts</dt><dd>NLP, Transformers (T5), sentence embeddings, TF-IDF, ensemble learning, explainable AI, anomaly detection, data validation, OOP</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <h2>Education and training</h2>
+    <div class="item">
+      <div class="when">Graduated 2026</div>
+      <div><h3>B.Sc. in Computer Science &amp; Engineering</h3>
+        <div class="stack">Daffodil International University, Dhaka · CGPA 3.35 / 4.00</div>
+        <ul><li>Thesis: a leakage-free, clinical-feature-based machine learning and deep learning ensemble framework to predict chronic kidney disease.</li>
+        <li>Supervised by Dr. Naznin Sultana, with co-supervisor Mr. Mayen Uddin Mojumdar.</li></ul></div>
+    </div>
+    <div class="item">
+      <div class="when">2024 – 2025</div>
+      <div><h3>Python with Machine Learning</h3>
+        <div class="stack">EDGE Project, Bangladesh Computer Council · 80 hours</div></div>
+    </div>
+    <div class="item">
+      <div class="when">Sep 2026</div>
+      <div><h3>Aspire Leaders Program</h3>
+        <div class="stack">Aspire Institute · 40 hours: critical thinking, communication, leadership</div></div>
+    </div>
+    <div class="item">
+      <div class="when">25 Jul 2026</div>
+      <div><h3>Team Leader, AI Innovation Hackathon finalist</h3>
+        <div class="stack">Team Nephroal · Daffodil International University with World AI Alliance</div>
+        <ul><li>Also event organizer for the YES Club, Transparency International Bangladesh: led a nationwide anti-corruption awareness campaign.</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <p class="big">Hiring for an entry-level AI/ML role? Let’s talk.</p>
+    <div class="btns">
+      <a class="btn pri" href="mailto:adib2205101521@diu.edu.bd">adib2205101521@diu.edu.bd</a>
+      <a class="btn" href="https://www.linkedin.com/in/adib-hassan-178204344">LinkedIn</a>
+      <a class="btn" href="https://github.com/adibWd">GitHub</a>
+    </div>
+    <p class="muted" style="margin-top:22px">Dhaka, Bangladesh · +880 1795-293361</p>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">© 2026 Adib Hassan</div></footer>
+<a class="fab" id="fab" href="mailto:adib2205101521@diu.edu.bd">Hire me</a>
+
 <script>
-(function(){var t=document.getElementById('th');function u(){var v=+t.value,m=Math.round(100*Math.pow(v,1.6)*1.1),f=Math.round(100*Math.pow(1-v,1.6)*1.1);m=Math.min(m,100);f=Math.min(f,100);
-document.getElementById('thv').textContent=v.toFixed(2);document.getElementById('mv').textContent=m+'%';document.getElementById('fv').textContent=f+'%';
-document.getElementById('mb').style.width=m+'%';document.getElementById('fb').style.width=f+'%'}
-t.addEventListener('input',u);u()})();
-</script></body></html>
+// Theme: follows the system until the visitor picks one; the choice is remembered.
+(function(){
+  var root=document.documentElement,btn=document.getElementById('theme');
+  try{var s=localStorage.getItem('theme');if(s)root.setAttribute('data-theme',s);}catch(e){}
+  btn.addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+    var next=cur==='dark'?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem('theme',next);}catch(e){}
+  });
+})();
+
+// Threshold tuner (illustrative curves)
+(function(){
+  var th=document.getElementById('th'),$=function(i){return document.getElementById(i)};
+  var miss=function(t){return Math.pow(t,1.47)},fa=function(t){return Math.pow(1-t,1.47)};
+  function f2(t){var r=1-miss(t),f=fa(t),p=.2,pr=r*p/(r*p+f*(1-p)||1);return 5*pr*r/(4*pr+r||1)}
+  function draw(){
+    var t=+th.value,m=Math.round(miss(t)*100),f=Math.round(fa(t)*100);
+    $('tv').textContent=t.toFixed(2);$('mv').textContent=m+'%';$('fv').textContent=f+'%';
+    $('bm').style.width=m+'%';$('bf').style.width=f+'%';
+  }
+  th.addEventListener('input',draw);
+  $('suggest').addEventListener('click',function(){
+    var best=.5,bs=-1;for(var t=.05;t<=.95;t+=.01){var s=f2(t);if(s>bs){bs=s;best=t}}
+    th.value=best.toFixed(2);draw();
+    $('sout').textContent='F2 favours catching faults, so the suggested level sits below 0.50 (illustrative, assumes 20% of readings are faulty).';
+  });
+  draw();
+})();
+
+// Active nav link + hide floating button on the contact section
+(function(){
+  var links={},ids=['flagship','experience','projects','skills','education','contact'];
+  document.querySelectorAll('.nav .links a').forEach(function(a){links[a.getAttribute('href').slice(1)]=a});
+  var fab=document.getElementById('fab');
+  if(!('IntersectionObserver' in window))return;
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        Object.keys(links).forEach(function(k){links[k].classList.toggle('on',k===e.target.id)});
+        fab.classList.toggle('hide',e.target.id==='contact');
+      }
+    });
+  },{rootMargin:'-40% 0px -55% 0px'});
+  ids.forEach(function(i){io.observe(document.getElementById(i))});
+})();
+</script>
+</body>
+</html>
